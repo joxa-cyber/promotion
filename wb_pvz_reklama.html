@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WB PVZ Reklama</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;600;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0a0a0f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'Manrope', sans-serif;
+    padding: 20px;
+  }
+
+  .card {
+    width: 520px;
+    background: #0e0e18;
+    border-radius: 28px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(130, 80, 255, 0.15);
+    box-shadow: 0 40px 120px rgba(100, 50, 255, 0.25), 0 0 0 1px rgba(255,255,255,0.04);
+    animation: fadeUp 0.8s ease forwards;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* TOP GLOWING HEADER */
+  .header {
+    position: relative;
+    padding: 44px 40px 36px;
+    background: linear-gradient(135deg, #1a0a3a 0%, #0f0520 60%, #1a0535 100%);
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 260px; height: 260px;
+    background: radial-gradient(circle, rgba(140,60,255,0.45) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: pulse 4s ease-in-out infinite;
+  }
+
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: -40px;
+    width: 180px; height: 180px;
+    background: radial-gradient(circle, rgba(80,30,200,0.3) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.1); opacity: 1; }
+  }
+
+  .wb-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 100px;
+    padding: 6px 16px 6px 10px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 2;
+    animation: slideIn 0.6s ease 0.2s both;
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .wb-dot {
+    width: 8px; height: 8px;
+    background: #a855f7;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #a855f7;
+    animation: blink 2s ease infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .wb-badge span {
+    font-size: 11px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 58px;
+    line-height: 0.95;
+    color: #fff;
+    position: relative;
+    z-index: 2;
+    margin-bottom: 6px;
+    animation: slideIn 0.6s ease 0.3s both;
+  }
+
+  .headline .accent {
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgba(168, 85, 247, 0.7);
+  }
+
+  .subheadline {
+    font-size: 14px;
+    color: rgba(255,255,255,0.45);
+    font-weight: 500;
+    position: relative;
+    z-index: 2;
+    letter-spacing: 0.3px;
+    animation: slideIn 0.6s ease 0.4s both;
+  }
+
+  /* HOOK SECTION */
+  .hook {
+    padding: 28px 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    animation: fadeUp 0.6s ease 0.5s both;
+  }
+
+  .hook-text {
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .hook-text strong {
+    color: #fff;
+    font-weight: 800;
+  }
+
+  .hook-text .highlight {
+    color: #a855f7;
+    font-weight: 700;
+  }
+
+  /* PROBLEM → SOLUTION */
+  .problem-solution {
+    padding: 28px 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    animation: fadeUp 0.6s ease 0.6s both;
+  }
+
+  .ps-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 10px;
+    align-items: flex-start;
+  }
+
+  .ps-icon {
+    font-size: 16px;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+
+  .ps-text {
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.5);
+    text-decoration: line-through;
+    text-decoration-color: rgba(255,80,80,0.4);
+  }
+
+  .ps-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 16px 0;
+  }
+
+  .ps-divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(168,85,247,0.3), transparent);
+  }
+
+  .ps-divider-text {
+    font-size: 11px;
+    font-weight: 700;
+    color: #a855f7;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .ps-good {
+    font-size: 14px;
+    color: rgba(255,255,255,0.85);
+    font-weight: 600;
+  }
+
+  .ps-good .tick {
+    color: #a855f7;
+    margin-right: 6px;
+  }
+
+  /* LOCATIONS */
+  .locations {
+    padding: 28px 40px;
+    animation: fadeUp 0.6s ease 0.7s both;
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .location-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px;
+    padding: 18px 20px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: all 0.3s ease;
+    cursor: default;
+  }
+
+  .location-card:hover {
+    background: rgba(168,85,247,0.08);
+    border-color: rgba(168,85,247,0.25);
+    transform: translateX(4px);
+  }
+
+  .loc-icon {
+    width: 42px; height: 42px;
+    background: linear-gradient(135deg, rgba(168,85,247,0.2), rgba(100,40,200,0.2));
+    border: 1px solid rgba(168,85,247,0.2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .loc-info {}
+  .loc-city {
+    font-size: 15px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: 0.3px;
+  }
+  .loc-address {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    margin-top: 2px;
+  }
+
+  .loc-time {
+    margin-left: auto;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .loc-time-value {
+    font-size: 13px;
+    font-weight: 700;
+    color: rgba(168,85,247,0.9);
+  }
+
+  .loc-time-label {
+    font-size: 10px;
+    color: rgba(255,255,255,0.3);
+    margin-top: 2px;
+  }
+
+  /* FOOTER CTA */
+  .cta {
+    padding: 24px 40px 36px;
+    animation: fadeUp 0.6s ease 0.8s both;
+  }
+
+  .cta-box {
+    background: linear-gradient(135deg, rgba(168,85,247,0.15), rgba(100,40,200,0.1));
+    border: 1px solid rgba(168,85,247,0.2);
+    border-radius: 16px;
+    padding: 20px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(168,85,247,0.6), transparent);
+  }
+
+  .cta-main {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    color: #fff;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+
+  .cta-sub {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    font-weight: 500;
+  }
+
+  .cta-sub strong {
+    color: rgba(168,85,247,0.9);
+  }
+
+  /* COPY TEXT VERSION */
+  .copy-section {
+    padding: 0 40px 36px;
+    animation: fadeUp 0.6s ease 0.9s both;
+  }
+
+  .copy-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .copy-box {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    padding: 16px 18px;
+    font-size: 12.5px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.55);
+    font-family: 'Manrope', monospace;
+    white-space: pre-line;
+    position: relative;
+  }
+
+  .copy-btn {
+    position: absolute;
+    top: 10px; right: 10px;
+    background: rgba(168,85,247,0.15);
+    border: 1px solid rgba(168,85,247,0.25);
+    border-radius: 8px;
+    padding: 5px 12px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #a855f7;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Manrope', sans-serif;
+  }
+
+  .copy-btn:hover {
+    background: rgba(168,85,247,0.25);
+  }
+
+  .copy-btn:active {
+    transform: scale(0.95);
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <!-- HEADER -->
+  <div class="header">
+    <div class="wb-badge">
+      <div class="wb-dot"></div>
+      <span>Wildberries PVZ</span>
+    </div>
+    <div class="headline">POSILKANGIZ<br><span class="accent">SIZGA</span><br>YAQIN</div>
+    <div class="subheadline">Shahrisabz & Kitob — endi Wildberries rasmiy nuqtasi sizda</div>
+  </div>
+
+  <!-- HOOK -->
+  <div class="hook">
+    <div class="hook-text">
+      Wildberries'dan xarid qildingiz, lekin <strong>posilkangizni qayerdan olishni</strong> bilmayapsizmi? 
+      Boshqa shaharga borishga <span class="highlight">hojat yo'q.</span>
+      Siz allaqachon kerakli joydasiz.
+    </div>
+  </div>
+
+  <!-- PROBLEM → SOLUTION -->
+  <div class="problem-solution">
+    <div class="ps-row">
+      <div class="ps-icon">❌</div>
+      <div class="ps-text">Uzoq yo'l, noqulay manzil</div>
+    </div>
+    <div class="ps-row">
+      <div class="ps-icon">❌</div>
+      <div class="ps-text">Posilkani kutib, stressda qolish</div>
+    </div>
+    <div class="ps-row">
+      <div class="ps-icon">❌</div>
+      <div class="ps-text">Ish vaqtida yetib borolmaslik</div>
+    </div>
+
+    <div class="ps-divider">
+      <div class="ps-divider-line"></div>
+      <div class="ps-divider-text">Endi</div>
+      <div class="ps-divider-line"></div>
+    </div>
+
+    <div class="ps-row">
+      <div class="ps-good"><span class="tick">✦</span>Keldi — xabardor bo'lasiz</div>
+    </div>
+    <div class="ps-row">
+      <div class="ps-good"><span class="tick">✦</span>Qulay vaqtda — soat 8 dan 19 gacha</div>
+    </div>
+    <div class="ps-row">
+      <div class="ps-good"><span class="tick">✦</span>Yaqin manzil — haftalik ishingiz yo'q</div>
+    </div>
+  </div>
+
+  <!-- LOCATIONS -->
+  <div class="locations">
+    <div class="section-label">Manzillar</div>
+
+    <div class="location-card">
+      <div class="loc-icon">🏙</div>
+      <div class="loc-info">
+        <div class="loc-city">Shahrisabz</div>
+        <div class="loc-address">Taraqqiyot ko'chasi, 4</div>
+      </div>
+      <div class="loc-time">
+        <div class="loc-time-value">08:00–19:00</div>
+        <div class="loc-time-label">Har kuni</div>
+      </div>
+    </div>
+
+    <div class="location-card">
+      <div class="loc-icon">🏘</div>
+      <div class="loc-info">
+        <div class="loc-city">Kitob</div>
+        <div class="loc-address">Katta Yo'l ko'chasi, 126</div>
+      </div>
+      <div class="loc-time">
+        <div class="loc-time-value">08:00–19:00</div>
+        <div class="loc-time-label">Har kuni</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta">
+    <div class="cta-box">
+      <div class="cta-main">Buyurtma bering. Biz yetkazamiz.</div>
+      <div class="cta-sub">Wildberries'dan xarid — <strong>Shahrisabz & Kitob</strong>dan oling</div>
+    </div>
+  </div>
+
+  <!-- COPY TEXT -->
+  <div class="copy-section">
+    <div class="copy-label">Telegram / WhatsApp uchun nusxa</div>
+    <div class="copy-box">
+      <button class="copy-btn" onclick="copyText()">Nusxa ol</button>
+      <span id="post-text">🟣 WILDBERRIES BUYURTMANGIZNI — SIZGA YAQIN JOYDAN OLING!
+
+Posilkangiz uchun boshqa shaharga borish keraksiz.
+Endi siz allaqachon kerakli joydasiz.
+
+━━━━━━━━━━━━━━━━━━
+
+❌ Uzoq yo'l — yo'q
+❌ Noqulay manzil — yo'q
+❌ Kech qolish — yo'q
+
+✦ Keldi → xabardor bo'lasiz
+✦ Qulay vaqt → 08:00 dan 19:00 gacha
+✦ Yaqin manzil → siz uchun
+
+━━━━━━━━━━━━━━━━━━
+📍 SHAHRISABZ — Taraqqiyot ko'chasi, 4
+📍 KITOB — Katta Yo'l ko'chasi, 126
+
+🕐 Har kuni: 08:00 – 19:00
+━━━━━━━━━━━━━━━━━━
+
+Wildberries'dan xarid qiling →
+Bizdan oling. Oddiy. Qulay. Yaqin. 💜</span>
+    </div>
+  </div>
+</div>
+
+<script>
+function copyText() {
+  const text = document.getElementById('post-text').innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('.copy-btn');
+    btn.textContent = '✓ Nusxalandi!';
+    btn.style.color = '#4ade80';
+    setTimeout(() => {
+      btn.textContent = 'Nusxa ol';
+      btn.style.color = '#a855f7';
+    }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>
